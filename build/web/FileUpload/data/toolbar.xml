@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<toolbar>
+	<item id="add" type="button" text="Add"/>
+	<item id="edit" type="button" text="Edit"/>
+	<item id="delete" type="button" text="Delete"/>
+	<!-- <item id="save" type="button" text="Save"/>
+	<item id="cancel" type="button" text="cancel"/> -->
+
+</toolbar>

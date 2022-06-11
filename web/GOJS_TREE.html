@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ERWIN HIERARCHY</title>
+  <meta name="description" content="An almost minimal diagram using a very simple node template and the default link template." />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="gojs.js">
+  </script>
+
+  <script src="hierarchy.js">
+  </script>
+
+  <style type="text/css">
+    /* CSS for the traditional context menu */
+
+    #contextMenu {
+      z-index: 10002;
+      position: absolute;
+      left: 5px;
+      border: 1px solid #444;
+      background-color: #F5F5F5;
+      display: none;
+      box-shadow: 0 0 10px rgba( 0, 0, 0, .4);
+      font-size: 12px;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+
+    #contextMenu ul {
+      list-style: none;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    #contextMenu li a {
+      position: relative;
+      min-width: 60px;
+      color: #444;
+      display: inline-block;
+      padding: 6px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #contextMenu li:hover {
+      background: #CEDFF2;
+      color: #EEE;
+    }
+
+    #contextMenu li ul li {
+      display: none;
+    }
+
+    #contextMenu li ul li a {
+      position: relative;
+      min-width: 60px;
+      padding: 6px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #contextMenu li:hover ul li {
+      display: block;
+      margin-left: 0px;
+      margin-top: 0px;
+    }
+  </style>
+
+
+
+</head>
+
+<body id="b" onload="doInit()">
+  <!-- <div id="myDiagramDiv" style="border: solid 1px black; width:1350px; height:1000px"></div> -->
+  <div id="sample">
+    <p>HTML Context menu <b>GoJS</b> Sample</p>
+
+    <div style="display: inline-block;">
+      <!-- We make a div to contain both the Diagram div and the context menu (such that they are siblings)
+           so that absolute positioning works easily.
+           This DIV containing both MUST have a non-static CSS position (we use position: relative)
+           so that our context menu's absolute coordinates work correctly. -->
+      <div style="position: relative;">
+        <div id="myDiagram" style="border: solid 1px black; width:1350px; height:1000px"></div>
+        <div id="contextMenu">
+          <ul>
+            <li><a href="#" id="cut" onclick="cxcommand(this.textContent)">Cut</a></li>
+            <li><a href="#" id="copy" onclick="cxcommand(this.textContent)">Copy</a></li>
+            <li><a href="#" id="paste" onclick="cxcommand(this.textContent)">Paste</a></li>
+            <li><a href="#" id="delete" onclick="cxcommand(this.textContent)">Delete</a></li>
+            <li><a href="#" id="color" onclick="cxcommand('Color')">Color</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

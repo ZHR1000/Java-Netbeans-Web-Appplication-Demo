@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <form-beans>
+    <form-bean name="EmpForm" type="com.erwin.forms.EmployeeForm"></form-bean>
+    <form-bean name="metadataForm" type="com.erwin.forms.MetadataForm"></form-bean>
+    <form-bean name="FileUploadForm" type="com.erwin.forms.FileUploadForm"></form-bean>
+    <form-bean name="FileUploadForm" type="com.erwin.forms.FileUploadForm"></form-bean>
+    <form-bean name="UploadFile" type="com.erwin.upload.model.UploadFile"/>
+  </form-beans>
+
+  <global-exceptions></global-exceptions>
+
+  <global-forwards>
+    <forward name="welcome" path="/Welcome.do"/>
+  </global-forwards>
+
+  <action-mappings>
+    <action input="/" parameter="action" path="/EmployeeAction" name="EmpForm" attribute="EmpForm" scope="request" type="com.erwin.action.EmployeeAction">
+      <forward name="view" path="/view.jsp"/>
+      <forward name="form" path="/form.jsp"/>
+
+    </action>
+
+    <action input="/" parameter="action" path="/CustomerAction" scope="request" type="com.erwin.action.CustomerAction">
+      <forward name="treepath" path="/tree.jsp"/>
+      <forward name="grid1path" path="/grid1.jsp"/>
+      <forward name="grid2path" path="/grid2.jsp"/>
+      <forward name="grid3path" path="/grid3.jsp"/>
+      <forward name="dataViewpath" path="/dataView.jsp"/>
+      <forward name="formpath" path="/form-gridFORM.jsp"/>
+    </action>
+
+    <action input="/" parameter="action" path="/FormGridAction" scope="request" type="com.erwin.action.FormGridAction">
+      <forward name="innerGridPath" path="/form-gridINNERGRID.jsp"/>
+      <forward name="formGridView" path="/form-gridGRID.jsp"/>
+    </action>
+
+    <action input="/" parameter="action" path="/ExpandTreeAction" scope="request" type="com.erwin.action.ExpandTreeAction">
+      <forward name="initialTreePath" path="/intialEmployeeTree.jsp"/>
+      <forward name="expandTreePath" path="/expandEmployeeTree.jsp"/>
+      <forward name="expandTreeResponsePath" path="/expandTreeResponsePage.jsp"/>
+
+    </action>
+
+    <action input="/" parameter="action" path="/MetadataAction" name="metadataForm" attribute="metadataForm" scope="request" type="com.erwin.action.MetadataAction">
+      <forward name="metadataFormPath" path="/metadataForm.jsp"/>
+      <forward name="metadataGrid1Path" path="/metadataGrid1.jsp"/>
+      <forward name="metadataGrid2Path" path="/metadataGrid2.jsp"/>
+      <forward name="metadataGrid3Path" path="/metadataGrid3.jsp"/>
+    </action>
+
+    <action input="/" parameter="action" path="/MultilanguageAction" scope="request" type="com.erwin.action.MultilanguageAction">
+      <forward name="multilanguageView" path="/multilanguageGrid.jsp"/>
+      <forward name="multilanguageJSPView" path="/multilanguageJSP.jsp"/>
+    </action>
+
+    <action path="/Welcome" forward="/welcomeStruts.jsp"/>
+    <action input="/" parameter="action" path="/UploadAction" name="FileUploadForm" attribute="FileUploadForm" scope="request" type="com.erwin.action.UploadAction">
+      <forward name="UploadSuccess" path="/display.jsp"/>
+      <forward name="Upload" path="/fileupload.jsp"/>
+      <forward name="UploadGrid" path="/uploadGrid.jsp"/>
+      <forward name="DownloadFileServlet" path="/DownloadFileServlet.java"/>
+      <forward name="response" path="/response.jsp"/>
+      <forward name="responseResponse" path="/previewResponse.jsp"/>
+      <forward name="previewresponse" path="/previewResp.jsp"/>
+    </action>
+    
+    <action input="/"
+        parameter="action"
+        path="/UploadFileAction" 
+        scope="request"
+        name="UploadFile"
+        attribute="UploadFile"
+        type="com.erwin.upload.action.UploadFileAction">
+
+        <forward name="success" path="/FileUpload/grid.jsp" />
+        <forward name="uploadFile" path="/FileUpload/uploadFile.jsp" />
+
+    </action>
+  </action-mappings>
+
+  <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+  <message-resources parameter="com/myapp/struts/ApplicationResource"/>
+  <message-resources parameter="com/erwin/action/Common.properties"/>
+  <!-- ========================= Tiles plugin ===============================-->
+  <!-- This plugin initialize Tiles definition factory. This later can takes some parameters explained here after. The plugin first read parameters from web.xml, thenoverload them with parameters defined here. All parameters are optional. The plugin
+  should be declared in each struts-config file. - definitions-config: (optional) Specify configuration file names. There can be several comma separated file names (default: ?? ) - moduleAware: (optional - struts1.1) Specify if the Tiles definition
+  factory is module aware. If true (default), there will be one factory for each Struts module. If false, there will be one common factory for all module. In this later case, it is still needed to declare one plugin per module. The factory will be
+  initialized with parameters found in the first initialized plugin (generally the one associated with the default module). true : One factory per module. (default) false : one single shared factory for all modules - definitions-parser-validate:
+  (optional) Specify if xml parser should validate the Tiles configuration file. true : validate. DTD should be specified in file header (default) false : no validation Paths found in Tiles definitions are relative to the main context. -->
+  <plug-in className="org.apache.struts.tiles.TilesPlugin">
+    <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml"/>
+    <set-property property="moduleAware" value="true"/>
+  </plug-in>
+
+  <!-- ========================= Validator plugin ================================= -->
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames" value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+  </plug-in>
+
+</struts-config>

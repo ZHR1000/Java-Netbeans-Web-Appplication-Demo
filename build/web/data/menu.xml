@@ -1,0 +1,6 @@
+<?xml version='1.0' ?>
+<menu id="0">
+  <item text="Add" id="add"/>
+  <item text="Edit" id="edit"/>
+  <item text="Delete" id="del"/>
+</menu>
